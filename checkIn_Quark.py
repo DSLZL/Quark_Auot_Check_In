@@ -2,7 +2,6 @@ import os
 import re 
 import sys 
 import requests 
-from security import safe_requests
 
 cookie_list = os.getenv("COOKIE_QUARK").split('\n|&&')
 
@@ -64,7 +63,7 @@ class Quark:
             "sign": self.param.get('sign'),
             "vcode": self.param.get('vcode')
         }
-        response = safe_requests.get(url=url, params=querystring).json()
+        response = requests.get(url=url, params=querystring).json()
         #print(response)
         if response.get("data"):
             return response["data"]
@@ -101,7 +100,7 @@ class Quark:
             "moduleCode": "1f3563d38896438db994f118d4ff53cb",
             "kps": self.param.get('kps'),
         }
-        response = safe_requests.get(url=url, params=querystring).json()
+        response = requests.get(url=url, params=querystring).json()
         # print(response)
         if response.get("data"):
             return response["data"]["balance"]
